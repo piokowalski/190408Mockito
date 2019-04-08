@@ -4,6 +4,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,10 +16,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 //@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
 
-//    @Mock
+    //    @Mock
     private UserDao userDao;
 
-//    @InjectMocks
+    //    @InjectMocks
     private UserService userService;
 
     @BeforeEach
@@ -76,25 +77,44 @@ public class UserServiceTest {
                 );
     }
 
+//    @Test
+//    public void shouldReturnTrueIfUserExists() {
+//        // given
+////CAPTOR HERE !!!
+//
+//        ArgumentCaptor<String> nameCaptor = ArgumentCaptor.forClass(String.class);
+//
+////USING CAPTOR !!!
+//        User admin = new User("admin");
+//        when(userDao.findUser(nameCaptor.capture()))
+//                .thenReturn(admin);
+//
+//        // when
+//        boolean result = userService.doesUserExist("admin");
+//        // then
+//
+//        assertThat(result).isEqualTo(true);
+//        assertThat(nameCaptor.getValue()).isEqualTo("admin");
+
     @Test
-    public void shouldReturnTrueIfUserExists() {
+    public void shouldReturnTrueIfUserExists2() {
+// Using verify() method
         // given
-//CAPTOR HERE !!!
 
-        ArgumentCaptor<String> nameCaptor = ArgumentCaptor.forClass(String.class);
-
-//USING CAPTOR !!!
         User admin = new User("admin");
-        when(userDao.findUser(nameCaptor.capture()))
+        when(userDao.findUser(eq("admin")))
                 .thenReturn(admin);
 
         // when
+
         boolean result = userService.doesUserExist("admin");
+
         // then
 
         assertThat(result).isEqualTo(true);
-        assertThat(nameCaptor.getValue()).isEqualTo("admin");
-
+        verify(userDao, times(1))
+                .findUser("admin");
+        verifyNoMoreInteractions(userDao);
 
     }
 
