@@ -1,7 +1,7 @@
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -104,6 +104,12 @@ public class UserServiceTest {
 
     @Test
     public void shouldThrowExceptionWhenRemovingNonExistingUser() {
-        // Zadanie 5
+        // given
+        doThrow(new RuntimeException()).when(userDao).deleteUser(any());
+
+        // when & then
+
+        assertThrows(RuntimeException.class,
+                () -> userService.deleteUser(new User("ania13")));
     }
 }
