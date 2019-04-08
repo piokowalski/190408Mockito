@@ -111,5 +111,13 @@ public class UserServiceTest {
 
         assertThrows(RuntimeException.class,
                 () -> userService.deleteUser(new User("ania13")));
+
+        //STARY SPOSOOB
+//        try {
+//            userService.deleteUser(new User("ania13"));
+//            fail("Should throw exception");
+//        } catch (Exception e) {
+//            assertThat(e).isInstanceOf(RuntimeException.class);
+//        }
     }
 }
