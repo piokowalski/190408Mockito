@@ -91,7 +91,15 @@ public class UserServiceTest {
 
     @Test
     public void shouldReturnFalseIfUserDoesNotExist() {
-        // Zadanie 4
+        // given (zachowanie domyślne)
+        when(userDao.findUser(eq("janek1")))
+                .thenReturn(null);
+
+        // when
+        boolean result = userService.doesUserExist("janek1");
+
+        // then
+        assertThat(result).isFalse();
     }
 
     @Test
