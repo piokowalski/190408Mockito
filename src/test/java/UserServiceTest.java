@@ -1,5 +1,5 @@
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.contains;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -77,7 +77,16 @@ public class UserServiceTest {
 
     @Test
     public void shouldReturnTrueIfUserExists() {
-        // Zadanie 3
+        // given
+        User admin = new User("admin");
+        when(userDao.findUser(eq("admin")))
+                .thenReturn(admin);
+
+        // when
+        boolean result = userService.doesUserExist("admin");
+        // then
+        assertThat(result).isEqualTo(true);
+
     }
 
     @Test
