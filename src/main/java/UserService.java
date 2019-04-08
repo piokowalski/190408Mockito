@@ -21,11 +21,12 @@ public class UserService {
     public List<User> findUsers(String s) {
         List<User> users = userDao.getAllUsers();
         return users.stream()
-            .filter(u -> u.getName().contains(s))
-            .collect(Collectors.toList());
+                .filter(u -> u.getName().contains(s))
+                .collect(Collectors.toList());
     }
 
     public List<User> getAllUsers() {
+
         return userDao.getAllUsers();
     }
 

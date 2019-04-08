@@ -15,7 +15,8 @@ public class User {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("User{");
-        sb.append("name='").append(name).append('\'');
+        sb.append("name='")
+                .append(name).append('\'');
         sb.append('}');
         return sb.toString();
     }
