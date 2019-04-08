@@ -1,4 +1,5 @@
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -54,7 +55,24 @@ public class UserServiceTest {
 
     @Test
     public void shouldReturnAllUsersMatchingPattern() {
-        // Zadanie 2
+//given
+        List<User> allUsers = List.of(
+                new User("Mostow"),
+                new User("Kowaliow"),
+                new User("Durczak"),
+                new User("Klinton")
+        );
+
+        when(userDao.getAllUsers()).thenReturn(allUsers);
+
+//when
+        List<User> result = userService.findUsers("ow");
+//then
+        assertThat(result).hasSize(2)
+                .contains(
+                        new User("Kowaliow"),
+                        new User("Mostow")
+                );
     }
 
     @Test
